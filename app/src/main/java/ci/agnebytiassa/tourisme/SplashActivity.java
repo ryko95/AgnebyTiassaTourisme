@@ -2,12 +2,9 @@ package ci.agnebytiassa.tourisme;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Base64;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
@@ -23,13 +20,6 @@ public class SplashActivity extends Activity {
         setContentView(R.layout.activity_splash);
 
         ImageView logo = findViewById(R.id.splashLogo);
-        try {
-            byte[] decoded = Base64.decode(LogoData.BASE64, Base64.DEFAULT);
-            Bitmap bitmap = BitmapFactory.decodeByteArray(decoded, 0, decoded.length);
-            logo.setImageBitmap(bitmap);
-        } catch (Exception ignored) {
-            logo.setImageResource(R.drawable.ic_app_symbol);
-        }
 
         ScaleAnimation scale = new ScaleAnimation(
                 0.88f, 1.0f, 0.88f, 1.0f,
