@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Agnéby-Tiassa Tourisme</string>
+    <string name="splash_tagline">Nature • Patrimoine • Expériences</string>
+    <string name="toolbar_title">Agnéby-Tiassa Tourisme</string>
+    <string name="nav_home">Accueil</string>
+    <string name="nav_sites">Sites</string>
+    <string name="nav_map">Carte</string>
+    <string name="nav_experiences">Expériences</string>
+    <string name="nav_contact">Contact</string>
+    <string name="share_title">Découvrir l’Agnéby-Tiassa</string>
+    <string name="share_text">Découvrez les richesses touristiques de l’Agnéby-Tiassa : https://agnebytiassatourisme.com/</string>
+</resources>
