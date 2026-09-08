@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.AgnebyTiassa" parent="android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:statusBarColor">@color/green_dark</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:colorAccent">@color/orange_primary</item>
+        <item name="android:windowBackground">@color/cream</item>
+    </style>
+
+    <style name="Theme.AgnebyTiassa.Splash" parent="android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:statusBarColor">@color/green_dark</item>
+        <item name="android:navigationBarColor">@color/splash_bg</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowBackground">@drawable/splash_gradient</item>
+        <item name="android:colorAccent">@color/orange_primary</item>
+    </style>
+</resources>
