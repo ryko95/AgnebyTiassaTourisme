@@ -19,7 +19,7 @@
             android:layout_height="46dp"
             android:contentDescription="@string/app_name"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_app_symbol" />
+            android:src="@drawable/logo_agneby" />
 
         <TextView
             android:layout_width="0dp"
@@ -78,7 +78,7 @@
 
     <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="74dp"
+        android:layout_height="76dp"
         android:background="@drawable/bottom_nav_background"
         android:fillViewport="true"
         android:overScrollMode="never"
@@ -146,6 +146,34 @@
                 android:orientation="vertical">
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="✦" android:textColor="@color/orange_primary" android:textSize="24sp" />
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/nav_experiences" android:textColor="@color/text_dark" android:textSize="10.5sp" android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/navFeatured"
+                android:layout_width="82dp"
+                android:layout_height="64dp"
+                android:layout_margin="3dp"
+                android:background="@drawable/nav_item_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⚡" android:textColor="@color/orange_primary" android:textSize="22sp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/nav_featured" android:textColor="@color/text_dark" android:textSize="10.5sp" android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/navMarketplace"
+                android:layout_width="94dp"
+                android:layout_height="64dp"
+                android:layout_margin="3dp"
+                android:background="@drawable/nav_item_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="▣" android:textColor="@color/green_dark" android:textSize="23sp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/nav_marketplace" android:textColor="@color/text_dark" android:textSize="10sp" android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
