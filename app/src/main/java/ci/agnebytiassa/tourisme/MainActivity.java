@@ -2,6 +2,7 @@ package ci.agnebytiassa.tourisme;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
@@ -60,6 +61,7 @@ public class MainActivity extends Activity {
         settings.setSupportZoom(true);
         settings.setAllowFileAccess(true);
         settings.setAllowContentAccess(true);
+        settings.setJavaScriptCanOpenWindowsAutomatically(true);
         settings.setMediaPlaybackRequiresUserGesture(false);
         settings.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
 
@@ -113,7 +115,9 @@ public class MainActivity extends Activity {
         if (url == null || !(url.startsWith("http://") || url.startsWith("https://"))) {
             return;
         }
-        view.postDelayed(() -> wireTouristSitesToGoogleMaps(view), 450L);
+        if (url.contains("agnebytiassatourisme.com")) {
+            view.postDelayed(() -> wireTouristSitesToGoogleMaps(view), 450L);
+        }
     }
 
     private void wireTouristSitesToGoogleMaps(WebView view) {
@@ -134,6 +138,7 @@ public class MainActivity extends Activity {
     private boolean handleUrl(Uri uri) {
         String scheme = uri.getScheme() == null ? "" : uri.getScheme().toLowerCase();
         String host = uri.getHost() == null ? "" : uri.getHost().toLowerCase();
+        String path = uri.getPath() == null ? "" : uri.getPath();
 
         if ("app".equals(scheme) && "retry".equals(host)) {
             webView.loadUrl(HOME_URL);
@@ -142,6 +147,9 @@ public class MainActivity extends Activity {
 
         if ("http".equals(scheme) || "https".equals(scheme)) {
             if (host.equals("agnebytiassatourisme.com") || host.endsWith(".agnebytiassatourisme.com")) {
+                return false;
+            }
+            if ((host.equals("www.google.com") || host.equals("google.com")) && path.startsWith("/maps/d/")) {
                 return false;
             }
             openExternal(uri);
@@ -189,7 +197,7 @@ public class MainActivity extends Activity {
     private void configureNavigation() {
         findViewById(R.id.navHome).setOnClickListener(v -> webView.loadUrl(HOME_URL));
         findViewById(R.id.navSites).setOnClickListener(v -> webView.loadUrl(SITES_URL));
-        findViewById(R.id.navMap).setOnClickListener(v -> openExternal(Uri.parse(MAP_URL)));
+        findViewById(R.id.navMap).setOnClickListener(v -> webView.loadUrl(MAP_URL));
         findViewById(R.id.navExperiences).setOnClickListener(v -> webView.loadUrl(EXPERIENCES_URL));
         findViewById(R.id.navFeatured).setOnClickListener(v -> showFeaturedPage());
         findViewById(R.id.navMarketplace).setOnClickListener(v -> showMarketplacePage());
@@ -197,6 +205,16 @@ public class MainActivity extends Activity {
 
         findViewById(R.id.btnReload).setOnClickListener(v -> webView.reload());
         findViewById(R.id.btnShare).setOnClickListener(v -> shareWebsite());
+        findViewById(R.id.btnExit).setOnClickListener(v -> confirmExit());
+    }
+
+    private void confirmExit() {
+        new AlertDialog.Builder(this)
+                .setTitle("Quitter l’application")
+                .setMessage("Voulez-vous fermer Agnéby-Tiassa Tourisme ?")
+                .setNegativeButton("Annuler", null)
+                .setPositiveButton("Quitter", (dialog, which) -> finishAndRemoveTask())
+                .show();
     }
 
     private String baseLocalCss() {
