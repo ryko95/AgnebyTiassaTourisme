@@ -1,0 +1,121 @@
+name: Build WattSuivi CI APK
+
+on:
+  push:
+    branches:
+      - wattsuivi-apk
+    paths:
+      - 'wattsuivi_ci/**'
+      - '.github/workflows/build-wattsuivi-apk.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+
+      - name: Setup Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Flutter stable
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Show Flutter version
+        run: flutter --version
+
+      - name: Generate Android project
+        working-directory: wattsuivi_ci
+        shell: bash
+        run: |
+          set -euo pipefail
+          TMP_BACKUP="$(mktemp -d)"
+          cp -R lib "$TMP_BACKUP/lib"
+          cp pubspec.yaml "$TMP_BACKUP/pubspec.yaml"
+          cp analysis_options.yaml "$TMP_BACKUP/analysis_options.yaml"
+
+          flutter create --project-name watt_suivi_ci --org ci.wattsuivi --platforms=android .
+
+          rm -rf lib
+          cp -R "$TMP_BACKUP/lib" lib
+          cp "$TMP_BACKUP/pubspec.yaml" pubspec.yaml
+          cp "$TMP_BACKUP/analysis_options.yaml" analysis_options.yaml
+
+      - name: Configure Android permissions and Gradle
+        working-directory: wattsuivi_ci
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          root = Path.cwd()
+          gradle = root / 'android/app/build.gradle.kts'
+          g = gradle.read_text()
+
+          if 'minSdk = flutter.minSdkVersion' in g:
+              g = g.replace('minSdk = flutter.minSdkVersion', 'minSdk = 24\n        multiDexEnabled = true')
+          elif 'minSdk = 24' in g and 'multiDexEnabled' not in g:
+              g = g.replace('minSdk = 24', 'minSdk = 24\n        multiDexEnabled = true')
+
+          g = g.replace('JavaVersion.VERSION_11', 'JavaVersion.VERSION_17')
+          if 'isCoreLibraryDesugaringEnabled' not in g:
+              g = g.replace('compileOptions {', 'compileOptions {\n        isCoreLibraryDesugaringEnabled = true', 1)
+          if 'coreLibraryDesugaring(' not in g:
+              g += '\n\ndependencies {\n    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")\n}\n'
+          gradle.write_text(g)
+
+          manifest = root / 'android/app/src/main/AndroidManifest.xml'
+          m = manifest.read_text()
+          marker = '<manifest xmlns:android="http://schemas.android.com/apk/res/android">'
+          permissions = (
+              '\n    <uses-permission android:name="android.permission.CAMERA" />'
+              '\n    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />'
+          )
+          if 'android.permission.CAMERA' not in m:
+              m = m.replace(marker, marker + permissions)
+          manifest.write_text(m)
+          PY
+
+      - name: Resolve Flutter dependencies
+        working-directory: wattsuivi_ci
+        run: flutter pub get
+
+      - name: Analyze Dart code
+        working-directory: wattsuivi_ci
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+
+      - name: Build release APK
+        working-directory: wattsuivi_ci
+        run: flutter build apk --release
+
+      - name: Prepare APK artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          cp wattsuivi_ci/build/app/outputs/flutter-apk/app-release.apk dist/WattSuivi-CI-v0.1.0.apk
+          sha256sum dist/WattSuivi-CI-v0.1.0.apk > dist/WattSuivi-CI-v0.1.0.sha256
+          ls -lh dist/
+
+      - name: Upload WattSuivi APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: WattSuivi-CI-APK-v0.1.0
+          path: |
+            dist/WattSuivi-CI-v0.1.0.apk
+            dist/WattSuivi-CI-v0.1.0.sha256
+          if-no-files-found: error
+          retention-days: 30
