@@ -13,7 +13,7 @@ class NotificationService {
     const android = AndroidInitializationSettings('@mipmap/ic_launcher');
     const darwin = DarwinInitializationSettings();
     const settings = InitializationSettings(android: android, iOS: darwin);
-    await _plugin.initialize(settings);
+    await _plugin.initialize(settings: settings);
 
     await _plugin
         .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
@@ -39,7 +39,12 @@ class NotificationService {
         android: androidDetails,
         iOS: DarwinNotificationDetails(),
       );
-      await _plugin.show(2000 + i, alert.title, alert.message, details);
+      await _plugin.show(
+        id: 2000 + i,
+        title: alert.title,
+        body: alert.message,
+        notificationDetails: details,
+      );
     }
   }
 }
