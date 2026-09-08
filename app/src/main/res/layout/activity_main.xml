@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cream"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@drawable/toolbar_background"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingEnd="10dp">
+
+        <ImageView
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_app_symbol" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:maxLines="2"
+            android:text="@string/toolbar_title"
+            android:textColor="@color/green_dark"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/btnReload"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:background="@drawable/action_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="↻"
+            android:textColor="@color/white"
+            android:textSize="23sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/btnShare"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/action_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="↗"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pageProgress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:max="100"
+        android:progressTint="@color/orange_primary"
+        android:visibility="gone" />
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:background="@drawable/bottom_nav_background"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp">
+
+            <LinearLayout
+                android:id="@+id/navHome"
+                android:layout_width="78dp"
+                android:layout_height="64dp"
+                android:layout_margin="3dp"
+                android:background="@drawable/nav_item_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⌂" android:textColor="@color/green_dark" android:textSize="24sp" android:textStyle="bold" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/nav_home" android:textColor="@color/text_dark" android:textSize="11sp" android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/navSites"
+                android:layout_width="78dp"
+                android:layout_height="64dp"
+                android:layout_margin="3dp"
+                android:background="@drawable/nav_item_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="★" android:textColor="@color/orange_primary" android:textSize="22sp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/nav_sites" android:textColor="@color/text_dark" android:textSize="11sp" android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/navMap"
+                android:layout_width="78dp"
+                android:layout_height="64dp"
+                android:layout_margin="3dp"
+                android:background="@drawable/nav_item_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⌖" android:textColor="@color/green_dark" android:textSize="24sp" android:textStyle="bold" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/nav_map" android:textColor="@color/text_dark" android:textSize="11sp" android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/navExperiences"
+                android:layout_width="92dp"
+                android:layout_height="64dp"
+                android:layout_margin="3dp"
+                android:background="@drawable/nav_item_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="✦" android:textColor="@color/orange_primary" android:textSize="24sp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/nav_experiences" android:textColor="@color/text_dark" android:textSize="10.5sp" android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/navContact"
+                android:layout_width="78dp"
+                android:layout_height="64dp"
+                android:layout_margin="3dp"
+                android:background="@drawable/nav_item_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="✉" android:textColor="@color/green_dark" android:textSize="22sp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/nav_contact" android:textColor="@color/text_dark" android:textSize="11sp" android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</LinearLayout>
