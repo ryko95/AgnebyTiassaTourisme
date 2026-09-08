@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="green_primary">#67BF73</color>
+    <color name="green_light">#BEE8B5</color>
+    <color name="green_soft">#EAF7E6</color>
+    <color name="green_dark">#256B35</color>
+    <color name="orange_primary">#F28C28</color>
+    <color name="orange_soft">#FFF1DF</color>
+    <color name="cream">#FFF9F1</color>
+    <color name="white">#FFFFFF</color>
+    <color name="text_dark">#17351F</color>
+    <color name="grey">#647067</color>
+    <color name="splash_bg">#F4FBF1</color>
+</resources>
