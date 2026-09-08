@@ -12,7 +12,7 @@
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingStart="12dp"
-        android:paddingEnd="10dp">
+        android:paddingEnd="8dp">
 
         <ImageView
             android:layout_width="46dp"
@@ -24,40 +24,48 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="9dp"
             android:layout_weight="1"
             android:maxLines="2"
             android:text="@string/toolbar_title"
             android:textColor="@color/green_dark"
-            android:textSize="17sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
-        <TextView
+        <ImageView
             android:id="@+id/btnReload"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="@drawable/action_button"
             android:clickable="true"
+            android:contentDescription="@string/action_reload"
             android:focusable="true"
-            android:gravity="center"
-            android:text="↻"
-            android:textColor="@color/white"
-            android:textSize="23sp"
-            android:textStyle="bold" />
+            android:padding="9dp"
+            android:src="@drawable/ic_refresh" />
 
-        <TextView
+        <ImageView
             android:id="@+id/btnShare"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            android:layout_marginStart="8dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="6dp"
             android:background="@drawable/action_button"
             android:clickable="true"
+            android:contentDescription="@string/action_share"
             android:focusable="true"
-            android:gravity="center"
-            android:text="↗"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:padding="9dp"
+            android:src="@drawable/ic_share" />
+
+        <ImageView
+            android:id="@+id/btnExit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="6dp"
+            android:background="@drawable/exit_button"
+            android:clickable="true"
+            android:contentDescription="@string/action_exit"
+            android:focusable="true"
+            android:padding="9dp"
+            android:src="@drawable/ic_exit" />
     </LinearLayout>
 
     <ProgressBar
@@ -78,7 +86,7 @@
 
     <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="76dp"
+        android:layout_height="78dp"
         android:background="@drawable/bottom_nav_background"
         android:fillViewport="true"
         android:overScrollMode="never"
@@ -92,105 +100,40 @@
             android:paddingStart="4dp"
             android:paddingEnd="4dp">
 
-            <LinearLayout
-                android:id="@+id/navHome"
-                android:layout_width="78dp"
-                android:layout_height="64dp"
-                android:layout_margin="3dp"
-                android:background="@drawable/nav_item_background"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:orientation="vertical">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⌂" android:textColor="@color/green_dark" android:textSize="24sp" android:textStyle="bold" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/nav_home" android:textColor="@color/text_dark" android:textSize="11sp" android:textStyle="bold" />
+            <LinearLayout android:id="@+id/navHome" android:layout_width="78dp" android:layout_height="66dp" android:layout_margin="3dp" android:background="@drawable/nav_item_background" android:clickable="true" android:focusable="true" android:gravity="center" android:orientation="vertical">
+                <ImageView android:layout_width="27dp" android:layout_height="27dp" android:contentDescription="@string/nav_home" android:src="@drawable/ic_home" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:text="@string/nav_home" android:textColor="@color/text_dark" android:textSize="11sp" android:textStyle="bold" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/navSites"
-                android:layout_width="78dp"
-                android:layout_height="64dp"
-                android:layout_margin="3dp"
-                android:background="@drawable/nav_item_background"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:orientation="vertical">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="★" android:textColor="@color/orange_primary" android:textSize="22sp" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/nav_sites" android:textColor="@color/text_dark" android:textSize="11sp" android:textStyle="bold" />
+            <LinearLayout android:id="@+id/navSites" android:layout_width="78dp" android:layout_height="66dp" android:layout_margin="3dp" android:background="@drawable/nav_item_background" android:clickable="true" android:focusable="true" android:gravity="center" android:orientation="vertical">
+                <ImageView android:layout_width="27dp" android:layout_height="27dp" android:contentDescription="@string/nav_sites" android:src="@drawable/ic_place" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:text="@string/nav_sites" android:textColor="@color/text_dark" android:textSize="11sp" android:textStyle="bold" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/navMap"
-                android:layout_width="78dp"
-                android:layout_height="64dp"
-                android:layout_margin="3dp"
-                android:background="@drawable/nav_item_background"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:orientation="vertical">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⌖" android:textColor="@color/green_dark" android:textSize="24sp" android:textStyle="bold" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/nav_map" android:textColor="@color/text_dark" android:textSize="11sp" android:textStyle="bold" />
+            <LinearLayout android:id="@+id/navMap" android:layout_width="78dp" android:layout_height="66dp" android:layout_margin="3dp" android:background="@drawable/nav_item_map_background" android:clickable="true" android:focusable="true" android:gravity="center" android:orientation="vertical">
+                <ImageView android:layout_width="28dp" android:layout_height="28dp" android:contentDescription="@string/nav_map" android:src="@drawable/ic_map" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="1dp" android:text="@string/nav_map" android:textColor="@color/green_dark" android:textSize="11sp" android:textStyle="bold" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/navExperiences"
-                android:layout_width="92dp"
-                android:layout_height="64dp"
-                android:layout_margin="3dp"
-                android:background="@drawable/nav_item_background"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:orientation="vertical">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="✦" android:textColor="@color/orange_primary" android:textSize="24sp" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/nav_experiences" android:textColor="@color/text_dark" android:textSize="10.5sp" android:textStyle="bold" />
+            <LinearLayout android:id="@+id/navExperiences" android:layout_width="92dp" android:layout_height="66dp" android:layout_margin="3dp" android:background="@drawable/nav_item_background" android:clickable="true" android:focusable="true" android:gravity="center" android:orientation="vertical">
+                <ImageView android:layout_width="27dp" android:layout_height="27dp" android:contentDescription="@string/nav_experiences" android:src="@drawable/ic_explore" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:text="@string/nav_experiences" android:textColor="@color/text_dark" android:textSize="10.5sp" android:textStyle="bold" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/navFeatured"
-                android:layout_width="82dp"
-                android:layout_height="64dp"
-                android:layout_margin="3dp"
-                android:background="@drawable/nav_item_background"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:orientation="vertical">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⚡" android:textColor="@color/orange_primary" android:textSize="22sp" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/nav_featured" android:textColor="@color/text_dark" android:textSize="10.5sp" android:textStyle="bold" />
+            <LinearLayout android:id="@+id/navFeatured" android:layout_width="84dp" android:layout_height="66dp" android:layout_margin="3dp" android:background="@drawable/nav_item_background" android:clickable="true" android:focusable="true" android:gravity="center" android:orientation="vertical">
+                <ImageView android:layout_width="27dp" android:layout_height="27dp" android:contentDescription="@string/nav_featured" android:src="@drawable/ic_featured" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:text="@string/nav_featured" android:textColor="@color/text_dark" android:textSize="10.5sp" android:textStyle="bold" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/navMarketplace"
-                android:layout_width="94dp"
-                android:layout_height="64dp"
-                android:layout_margin="3dp"
-                android:background="@drawable/nav_item_background"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:orientation="vertical">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="▣" android:textColor="@color/green_dark" android:textSize="23sp" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/nav_marketplace" android:textColor="@color/text_dark" android:textSize="10sp" android:textStyle="bold" />
+            <LinearLayout android:id="@+id/navMarketplace" android:layout_width="96dp" android:layout_height="66dp" android:layout_margin="3dp" android:background="@drawable/nav_item_background" android:clickable="true" android:focusable="true" android:gravity="center" android:orientation="vertical">
+                <ImageView android:layout_width="27dp" android:layout_height="27dp" android:contentDescription="@string/nav_marketplace" android:src="@drawable/ic_store" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:text="@string/nav_marketplace" android:textColor="@color/text_dark" android:textSize="10sp" android:textStyle="bold" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/navContact"
-                android:layout_width="78dp"
-                android:layout_height="64dp"
-                android:layout_margin="3dp"
-                android:background="@drawable/nav_item_background"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:orientation="vertical">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="✉" android:textColor="@color/green_dark" android:textSize="22sp" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/nav_contact" android:textColor="@color/text_dark" android:textSize="11sp" android:textStyle="bold" />
+            <LinearLayout android:id="@+id/navContact" android:layout_width="78dp" android:layout_height="66dp" android:layout_margin="3dp" android:background="@drawable/nav_item_background" android:clickable="true" android:focusable="true" android:gravity="center" android:orientation="vertical">
+                <ImageView android:layout_width="27dp" android:layout_height="27dp" android:contentDescription="@string/nav_contact" android:src="@drawable/ic_mail" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:text="@string/nav_contact" android:textColor="@color/text_dark" android:textSize="11sp" android:textStyle="bold" />
             </LinearLayout>
-
         </LinearLayout>
     </HorizontalScrollView>
-
 </LinearLayout>
