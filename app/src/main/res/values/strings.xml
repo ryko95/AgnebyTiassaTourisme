@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Agnéby-Tiassa Tourisme</string>
-    <string name="splash_tagline">Nature • Patrimoine • Expériences</string>
+    <string name="splash_tagline">Nature • Culture • Évasion</string>
     <string name="splash_label">Conseil Régional de l’Agnéby-Tiassa</string>
     <string name="splash_footer">Projet PATA • Côte d’Ivoire</string>
     <string name="toolbar_title">Agnéby-Tiassa Tourisme</string>
@@ -12,6 +12,9 @@
     <string name="nav_featured">À la une</string>
     <string name="nav_marketplace">Marketplace</string>
     <string name="nav_contact">Contact</string>
+    <string name="action_reload">Actualiser</string>
+    <string name="action_share">Partager</string>
+    <string name="action_exit">Quitter l’application</string>
     <string name="share_title">Découvrir l’Agnéby-Tiassa</string>
     <string name="share_text">Découvrez les richesses touristiques de l’Agnéby-Tiassa : https://agnebytiassatourisme.com/</string>
 </resources>
