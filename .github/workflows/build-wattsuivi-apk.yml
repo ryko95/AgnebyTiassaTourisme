@@ -73,8 +73,19 @@ jobs:
           g = g.replace('JavaVersion.VERSION_11', 'JavaVersion.VERSION_17')
           if 'isCoreLibraryDesugaringEnabled' not in g:
               g = g.replace('compileOptions {', 'compileOptions {\n        isCoreLibraryDesugaringEnabled = true', 1)
-          if 'coreLibraryDesugaring(' not in g:
-              g += '\n\ndependencies {\n    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")\n}\n'
+
+          dependencies = '''
+
+dependencies {
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
+    implementation("com.google.mlkit:text-recognition-chinese:16.0.1")
+    implementation("com.google.mlkit:text-recognition-devanagari:16.0.1")
+    implementation("com.google.mlkit:text-recognition-japanese:16.0.1")
+    implementation("com.google.mlkit:text-recognition-korean:16.0.1")
+}
+'''
+          if 'text-recognition-chinese:16.0.1' not in g:
+              g += dependencies
           gradle.write_text(g)
 
           manifest = root / 'android/app/src/main/AndroidManifest.xml'
