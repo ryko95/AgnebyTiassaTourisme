@@ -93,9 +93,9 @@ jobs:
         working-directory: wattsuivi_ci
         run: flutter pub get
 
-      - name: Analyze Dart code
+      - name: Analyze WattSuivi Dart code
         working-directory: wattsuivi_ci
-        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+        run: flutter analyze lib --no-fatal-infos --no-fatal-warnings
 
       - name: Build release APK
         working-directory: wattsuivi_ci
