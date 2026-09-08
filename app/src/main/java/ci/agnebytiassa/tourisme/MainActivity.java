@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
 
     private static final String HOME_URL = "https://agnebytiassatourisme.com/";
     private static final String SITES_URL = "https://agnebytiassatourisme.com/sites";
-    private static final String MAP_URL = "https://agnebytiassatourisme.com/carte";
+    private static final String MAP_URL = "https://www.google.com/maps/d/viewer?mid=1vcyK1EKqEjIT6h6ZnHl6MQOUkPZo3WE&femb=1&ll=0%2C0&z=8";
     private static final String EXPERIENCES_URL = "https://agnebytiassatourisme.com/experiences";
     private static final String CONTACT_URL = "https://agnebytiassatourisme.com/contact";
     private static final String WHATSAPP_URL = "https://wa.me/2250546093940";
@@ -113,24 +113,7 @@ public class MainActivity extends Activity {
         if (url == null || !(url.startsWith("http://") || url.startsWith("https://"))) {
             return;
         }
-
-        if (url.contains("/carte")) {
-            view.postDelayed(() -> focusInteractiveMap(view), 450L);
-        }
-
-        view.postDelayed(() -> wireTouristSitesToGoogleMaps(view), 500L);
-    }
-
-    private void focusInteractiveMap(WebView view) {
-        String script = "(function(){"
-                + "var selectors=['.leaflet-container','#map','[id*=map i]','[class*=map i]','iframe'];"
-                + "var found=null;"
-                + "for(var s=0;s<selectors.length&&!found;s++){"
-                + "var nodes=document.querySelectorAll(selectors[s]);"
-                + "for(var i=0;i<nodes.length;i++){var r=nodes[i].getBoundingClientRect();if(r.height>220&&r.width>220){found=nodes[i];break;}}}"
-                + "if(found){found.scrollIntoView({behavior:'auto',block:'start'});setTimeout(function(){window.scrollBy(0,-68);},80);}"
-                + "})();";
-        view.evaluateJavascript(script, null);
+        view.postDelayed(() -> wireTouristSitesToGoogleMaps(view), 450L);
     }
 
     private void wireTouristSitesToGoogleMaps(WebView view) {
@@ -206,7 +189,7 @@ public class MainActivity extends Activity {
     private void configureNavigation() {
         findViewById(R.id.navHome).setOnClickListener(v -> webView.loadUrl(HOME_URL));
         findViewById(R.id.navSites).setOnClickListener(v -> webView.loadUrl(SITES_URL));
-        findViewById(R.id.navMap).setOnClickListener(v -> webView.loadUrl(MAP_URL));
+        findViewById(R.id.navMap).setOnClickListener(v -> openExternal(Uri.parse(MAP_URL)));
         findViewById(R.id.navExperiences).setOnClickListener(v -> webView.loadUrl(EXPERIENCES_URL));
         findViewById(R.id.navFeatured).setOnClickListener(v -> showFeaturedPage());
         findViewById(R.id.navMarketplace).setOnClickListener(v -> showMarketplacePage());
@@ -294,7 +277,6 @@ public class MainActivity extends Activity {
     protected void onDestroy() {
         if (webView != null) {
             webView.stopLoading();
-            webView.removeJavascriptInterface("AgnebyApp");
             webView.destroy();
         }
         super.onDestroy();
